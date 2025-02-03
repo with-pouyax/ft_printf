@@ -54,5 +54,6 @@ int main(void)
 
 ## Additional Information
 
+
 - The project includes tests to check various scenarios and edge cases for each format specifier.
 - This implementation was done without the use of `vprintf` or any similar functions. It uses `va_list`, `va_start`, and `va_arg` to handle variable arguments.
