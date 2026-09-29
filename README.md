@@ -1,59 +1,20 @@
 # ft_printf
 
-![printf](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2JjbDR6dWI4aWRyNmlwNXdkM3dsZmtweWp4eW42enY2cG5hOG5obCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lXiRLb0xFzmreM8k8/giphy.gif)
+A compact implementation of formatted output for the 42 curriculum, packaged as a static C library.
 
-## Overview
+## Supported conversions
 
-This project is an implementation of the `printf` function from the C standard library. It aims to replicate the functionality of the original `printf` while learning the inner workings of formatting and variable argument lists. 
+`%c` · `%s` · `%p` · `%d` · `%i` · `%u` · `%x` · `%X` · `%%`
 
-The goal of this project is to understand how to handle different types of format specifiers, as well as how to manage variable arguments in a custom function.
+The parser dispatches conversions in [`ft_printf.c`](ft_printf.c); helpers write characters, strings, numbers and pointers. The function returns the number of emitted characters.
 
-## Features Covered
+## Build and link
 
-- **Basic Format Specifiers:**
-  - `c`: Single character output.
-  - `s`: String output.
-  - `d`/`i`: Integer output.
-  - `u`: Unsigned integer output.
-  - `x`/`X`: Hexadecimal output (lowercase/uppercase).
-  - `%`: Print the percent symbol.
-
-- **Precision and Width:**
-  - Handling field width and precision in output.
-  - Correctly formatting numbers with padding (zero-padding and space-padding).
-  
-- **Handling Negative Numbers:**
-  - Proper formatting for negative integers and hexadecimals.
-
-- **Pointer Handling:**
-  - Formatting and outputting pointers using `%p`.
-
-## How to Compile and Use
-
-To compile the project, simply run the following command:
-
-```bash
+```sh
 make
+cc -Wall -Wextra -Werror main.c libftprintf.a -o demo
 ```
 
-After compilation, the executable `ft_printf` will be available. To use the function in your code, include the `ft_printf.h` header file and call `ft_printf` instead of `printf`.
+Include [`ft_printf.h`](ft_printf.h) in your own `main.c`. The repository does not contain a standalone executable entry point. `make clean`, `make fclean` and `make re` are available.
 
-### Example:
-
-```c
-#include "ft_printf.h"
-
-int main(void)
-{
-    int num = 42;
-    ft_printf("Hello, world! %d
-", num);
-    return 0;
-}
-```
-
-## Additional Information
-
-
-- The project includes tests to check various scenarios and edge cases for each format specifier.
-- This implementation was done without the use of `vprintf` or any similar functions. It uses `va_list`, `va_start`, and `va_arg` to handle variable arguments.
+**Scope:** This supports the conversion subset above; it does not implement the full standard `printf` flags, width or precision grammar. [License](LICENSE).
